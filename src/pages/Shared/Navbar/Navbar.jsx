@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
   return (
     <>
-      <nav className="bg-white mt-3 sm:mt-3.5 md:mt-4 lg:my-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] flex justify-between items-center p-3.5 rounded-2xl sm:p-4 md:p-4.5 lg:p-5">
+      <nav className="bg-white mt-3 sm:mt-3.5 md:mt-4 lg:mt-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] flex justify-between items-center p-3.5 rounded-2xl sm:p-4 md:p-4.5 lg:p-5">
         <Link to={"/"} className="flex items-end">
           <img src="./Logo.png" alt="" />
           <h1 className="text-2xl font-bold -ml-3.5">ZapShift</h1>
@@ -45,13 +45,13 @@ const Navbar = () => {
           <div className="hidden lg:block">
             <Link
               to={"/signin"}
-              className="border border-[#dadada] text-[#606060] font-semibold px-4.5 py-2 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
+              className="border border-[#dadada] text-[#606060] font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
             >
               Sign In
             </Link>
             <Link
               to={"/signup"}
-              className="ml-2 border border-primary bg-primary text-secondary font-semibold px-4.5 py-2 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
+              className="ml-2 border border-primary bg-primary text-secondary font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
             >
               Sign Up
             </Link>
@@ -60,7 +60,7 @@ const Navbar = () => {
       </nav>
       <div className="drawer drawer-end">
         <input id="drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-side">
+        <div className="drawer-side z-9999">
           <label
             htmlFor="drawer"
             aria-label="close sidebar"
@@ -83,13 +83,13 @@ const Navbar = () => {
             <div className="absolute bottom-4 flex flex-col gap-1.5 sm:gap-2">
               <Link
                 to={"/signin"}
-                className="w-[188px] sm:w-[268px] border border-[#dadada] text-[#606060] font-semibold px-4.5 py-2 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
+                className="w-[188px] sm:w-[268px] border border-[#dadada] text-[#606060] font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
               >
                 Sign In
               </Link>
               <Link
                 to={"/signup"}
-                className="w-[188px] sm:w-[268px] border border-primary bg-primary text-secondary font-semibold px-4.5 py-2 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
+                className="w-[188px] sm:w-[268px] border border-primary bg-primary text-secondary font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-97 duration-300 transition-all"
               >
                 Sign Up
               </Link>
