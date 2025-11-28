@@ -80,3 +80,11 @@ header a.active {
     transform: scale(1) rotate(360deg);
   }
 }
+
+.swal2-confirm {
+  @apply text-[#03373d] bg-[#caeb66] hover:bg-[#c3e460] active:bg-[#bddc5c];
+}
+
+.swal2-cancel {
+  
+}

@@ -1,10 +1,13 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../layouts/Root";
 import Home from "../pages/Home/Home/Home";
-import Signin from "../pages/Auth/SignIn/SignIn/Signin";
-import Signup from "../pages/Auth/SignUp/SignUp/Signup";
+import AuthPage from "../layouts/AuthPage";
+import Signin from "../pages/Auth/SignIn/Signin";
+import Signup from "../pages/Auth/SignUp/Signup";
 import Coverage from "../pages/Coverage/Coverage";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import ForgetPassword from "../pages/Auth/ForgetPassword/ForgetPassword";
+import AuthRoute from "./AuthRoute";
 
 const router = createBrowserRouter([
   {
@@ -16,22 +19,44 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/coverage",
+        path: "coverage",
         Component: Coverage,
       },
       {
-        path: "/about-us",
+        path: "about-us",
         Component: AboutUs,
       },
     ],
   },
   {
-    path: "/signin",
-    Component: Signin,
-  },
-  {
-    path: "/signup",
-    Component: Signup,
+    path: "/",
+    Component: AuthPage,
+    children: [
+      {
+        path: "signin",
+        element: (
+          <AuthRoute>
+            <Signin />
+          </AuthRoute>
+        ),
+      },
+      {
+        path: "signup",
+        element: (
+          <AuthRoute>
+            <Signup />
+          </AuthRoute>
+        ),
+      },
+      {
+        path: "forgot-password",
+        element: (
+          <AuthRoute>
+            <ForgetPassword />
+          </AuthRoute>
+        ),
+      },
+    ],
   },
 ]);
 
