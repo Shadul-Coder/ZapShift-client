@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import icon from "../../../assets/image-upload-icon.png";
 import { useForm, useWatch } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
@@ -9,8 +9,9 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const Signup = () => {
-  const { setUser, setLoading, googleSignIn, emailRegister, update } =
+  const { user, setUser, setLoading, googleSignIn, emailRegister, update } =
     useAuth();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -19,6 +20,11 @@ const Signup = () => {
   } = useForm();
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate(location.state || "/");
+    }
+  }, [user, location.state, navigate]);
   const handleShowPass = (e) => {
     e.preventDefault();
     setShowPass(!showPass);
@@ -60,7 +66,6 @@ const Signup = () => {
                   timer: 1500,
                 });
               });
-            navigate("/");
           });
       })
       .catch((error) => {
@@ -217,6 +222,7 @@ const Signup = () => {
               <Link
                 className="hover:underline active:underline text-[#acc857]"
                 to={"/signin"}
+                state={location.state}
               >
                 Sign In
               </Link>

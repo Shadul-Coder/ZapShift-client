@@ -1,9 +1,10 @@
 import { CgMenuRightAlt } from "react-icons/cg";
 import { FaInfoCircle } from "react-icons/fa";
-import { LuBadgeDollarSign, LuClipboardList } from "react-icons/lu";
+import { LuClipboardList } from "react-icons/lu";
 import { PiMapPinAreaBold, PiPersonSimpleBikeBold } from "react-icons/pi";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import { SlSocialDropbox } from "react-icons/sl";
 
 const Navbar = () => {
   const { user, signOutuser } = useAuth();
@@ -11,7 +12,7 @@ const Navbar = () => {
     ["Services", "services", <LuClipboardList className="text-lg" />],
     ["Coverage", "coverage", <PiMapPinAreaBold className="text-lg" />],
     ["About Us", "about-us", <FaInfoCircle className="text-lg" />],
-    ["Pricing", "pricing", <LuBadgeDollarSign className="text-lg" />],
+    ["Send Parcel", "send-parcel", <SlSocialDropbox className="text-lg" />],
     [
       "Be a Rider",
       "be-a-rider",
@@ -49,12 +50,51 @@ const Navbar = () => {
           </div>
           <div className="hidden lg:block">
             {user ? (
-              <span
-                onClick={handleSignOut}
-                className="border border-primary bg-primary hover:bg-[#c3e460] active:bg-[#bddc5c] text-secondary font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-99 duration-300 transition-all"
-              >
-                Sign Out
-              </span>
+              <>
+                <div className="dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="h-13 w-13 rounded-full border border-primary overflow-hidden cursor-pointer"
+                  >
+                    <img
+                      src={user.photoURL}
+                      alt=""
+                      className="h-full w-full object-cover"
+                      crossOrigin="anonymous"
+                    />
+                  </div>
+                  <div
+                    tabIndex="-1"
+                    className="dropdown-content menu mt-1.5 border border-gray-200 rounded-2xl bg-base-100 p-3.5 z-99 w-65 shadow-sm"
+                  >
+                    <div className="pb-3 mb-3 flex items-center gap-2 border-b border-gray-200">
+                      <div className="h-11 w-11 rounded-full border border-primary overflow-hidden">
+                        <img
+                          src={user.photoURL}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          crossOrigin="anonymous"
+                        />
+                      </div>
+                      <div className="max-w-[171px] overflow-hidden">
+                        <h3 className="text-secondary font-semibold truncate">
+                          {user.displayName}
+                        </h3>
+                        <h4 className="text-gray-500 text-xs truncate">
+                          {user.email}
+                        </h4>
+                      </div>
+                    </div>
+                    <span
+                      onClick={handleSignOut}
+                      className="border border-primary bg-primary hover:bg-[#c3e460] active:bg-[#bddc5c] text-secondary text-center font-semibold px-4.5 py-2.5 rounded-xl cursor-pointer active:scale-99 duration-300 transition-all"
+                    >
+                      Sign Out
+                    </span>
+                  </div>
+                </div>
+              </>
             ) : (
               <>
                 <Link

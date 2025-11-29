@@ -7,7 +7,8 @@ import Signup from "../pages/Auth/SignUp/Signup";
 import Coverage from "../pages/Coverage/Coverage";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ForgetPassword from "../pages/Auth/ForgetPassword/ForgetPassword";
-import AuthRoute from "./AuthRoute";
+import PrivateRoute from "./PrivateRoute";
+import SendParcel from "../pages/SendParcel/SendParcel";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,14 @@ const router = createBrowserRouter([
         path: "about-us",
         Component: AboutUs,
       },
+      {
+        path: "send-parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -34,27 +43,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: "signin",
-        element: (
-          <AuthRoute>
-            <Signin />
-          </AuthRoute>
-        ),
+        Component: Signin,
       },
       {
         path: "signup",
-        element: (
-          <AuthRoute>
-            <Signup />
-          </AuthRoute>
-        ),
+        Component: Signup,
       },
       {
         path: "forgot-password",
-        element: (
-          <AuthRoute>
-            <ForgetPassword />
-          </AuthRoute>
-        ),
+        Component: ForgetPassword,
       },
     ],
   },

@@ -1,22 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import useAxios from "../../hooks/useAxios";
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Loading from "../../components/Loading/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const Coverage = () => {
   const axios = useAxios();
-  const [data, setData] = useState(null);
+  const { data, isLoading } = useQuery({
+    queryKey: ["districts"],
+    queryFn: () => axios.get("/warehouses").then((res) => res.data),
+  });
   const mapRef = useRef(null);
-  useEffect(() => {
-    const getData = async () => {
-      const res = await axios.get("/warehouses");
-      setData(res.data);
-    };
-    getData();
-  }, [axios]);
-  if (!data) {
+  if (isLoading) {
     return <Loading />;
   }
   const handleSearch = (e) => {

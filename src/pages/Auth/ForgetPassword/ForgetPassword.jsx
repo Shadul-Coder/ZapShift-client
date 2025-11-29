@@ -2,21 +2,27 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const ForgetPassword = () => {
-  const { setLoading, resetPassword } = useAuth();
+  const { user, setLoading, resetPassword } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
   const handleReset = (data) => {
     resetPassword(data.email)
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Check Your Mail!",
+          title: "Email sent! Check your inbox",
           showConfirmButton: false,
           timer: 1500,
         });

@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 const Signin = () => {
-  const { setLoading, googleSignIn, emailSignIn } = useAuth();
+  const { user, setLoading, googleSignIn, emailSignIn } = useAuth();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
@@ -16,6 +17,11 @@ const Signin = () => {
   const [remember, setRemember] = useState(localStorage.getItem("email") || "");
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (user) {
+      navigate(location.state || "/");
+    }
+  }, [user, location.state, navigate]);
   const handleShowPass = (e) => {
     e.preventDefault();
     setShowPass(!showPass);
@@ -33,7 +39,6 @@ const Signin = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
@@ -138,7 +143,6 @@ const Signin = () => {
             <Link
               to={"/forgot-password"}
               className="text-sm text-gray-500 hover:underline active:underline"
-              href="#"
             >
               Forgot your password?
             </Link>
@@ -149,6 +153,7 @@ const Signin = () => {
               <Link
                 className="hover:underline active:underline text-[#acc857]"
                 to={"/signup"}
+                state={location.state}
               >
                 Sign Up
               </Link>
