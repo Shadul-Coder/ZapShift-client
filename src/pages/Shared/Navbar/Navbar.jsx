@@ -1,18 +1,21 @@
-import { CgMenuRightAlt } from "react-icons/cg";
+import { CgMenuLeftAlt, CgMenuRightAlt } from "react-icons/cg";
 import { FaInfoCircle } from "react-icons/fa";
-import { LuClipboardList } from "react-icons/lu";
+import { LuBadgeDollarSign, LuClipboardList } from "react-icons/lu";
 import { PiMapPinAreaBold, PiPersonSimpleBikeBold } from "react-icons/pi";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
-import { SlSocialDropbox } from "react-icons/sl";
+import { MdOutlineDashboard } from "react-icons/md";
+import { FiSidebar } from "react-icons/fi";
+import logo from "../../../assets/Logo.png";
 
 const Navbar = () => {
-  const { user, signOutuser } = useAuth();
+  const { user, signOutuser, dashRef } = useAuth();
+  const location = useLocation();
   const navlinks = [
     ["Services", "services", <LuClipboardList className="text-lg" />],
     ["Coverage", "coverage", <PiMapPinAreaBold className="text-lg" />],
     ["About Us", "about-us", <FaInfoCircle className="text-lg" />],
-    ["Send Parcel", "send-parcel", <SlSocialDropbox className="text-lg" />],
+    ["Pricing", "pricing", <LuBadgeDollarSign className="text-lg" />],
     [
       "Be a Rider",
       "be-a-rider",
@@ -25,10 +28,30 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-white mt-3 sm:mt-3.5 md:mt-4 lg:mt-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] flex justify-between items-center rounded-2xl p-3.5 sm:p-4 md:p-4.5 lg:p-5">
-        <Link to={"/"} className="flex items-end">
-          <img src="./Logo.png" alt="" />
-          <h1 className="text-2xl font-bold -ml-3.5">ZapShift</h1>
-        </Link>
+        <div className="flex items-center gap-3">
+          {location.pathname.includes("dashboard") && (
+            <>
+              <button
+                onClick={() => dashRef.current.click()}
+                aria-label="open sidebar"
+                className="hidden lg:block"
+              >
+                <FiSidebar className="text-xl cursor-pointer" />
+              </button>
+              <button
+                onClick={() => dashRef.current.click()}
+                aria-label="open sidebar"
+                className="lg:hidden"
+              >
+                <CgMenuLeftAlt className="text-[27px]" />
+              </button>
+            </>
+          )}
+          <Link to={"/"} className="flex items-end cursor-default">
+            <img src={logo} alt="" />
+            <h1 className="text-2xl font-bold -ml-3.5">ZapShift</h1>
+          </Link>
+        </div>
         <div className="hidden lg:block space-x-5 text-[#606060] font-medium">
           {navlinks.map((link, index) => (
             <NavLink
@@ -68,7 +91,7 @@ const Navbar = () => {
                     tabIndex="-1"
                     className="dropdown-content menu mt-1.5 border border-gray-200 rounded-2xl bg-base-100 p-3.5 z-99 w-65 shadow-sm"
                   >
-                    <div className="pb-3 mb-3 flex items-center gap-2 border-b border-gray-200">
+                    <div className="pb-3 flex items-center gap-2 border-b border-gray-200">
                       <div className="h-11 w-11 rounded-full border border-primary overflow-hidden">
                         <img
                           src={user.photoURL}
@@ -85,6 +108,15 @@ const Navbar = () => {
                           {user.email}
                         </h4>
                       </div>
+                    </div>
+                    <div className="my-3">
+                      <Link
+                        to={"/dashboard"}
+                        className="py-2 px-2.5 rounded-lg transition-all duration-200 hover:bg-[#F4FBE0] flex items-center gap-1.5 font-medium cursor-pointer"
+                      >
+                        <MdOutlineDashboard />
+                        <span>Dashboard</span>
+                      </Link>
                     </div>
                     <span
                       onClick={handleSignOut}

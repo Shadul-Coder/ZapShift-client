@@ -8,7 +8,10 @@ import Coverage from "../pages/Coverage/Coverage";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ForgetPassword from "../pages/Auth/ForgetPassword/ForgetPassword";
 import PrivateRoute from "./PrivateRoute";
-import SendParcel from "../pages/SendParcel/SendParcel";
+import Dashboard from "../layouts/Dashboard";
+import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
+import SendParcel from "../pages/Dashboard/SendParcel/SendParcel";
+import ParcelDetails from "../pages/Dashboard/MyParcels/ParcelDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,12 +31,26 @@ const router = createBrowserRouter([
         Component: AboutUs,
       },
       {
-        path: "send-parcel",
+        path: "dashboard",
         element: (
           <PrivateRoute>
-            <SendParcel />
+            <Dashboard />
           </PrivateRoute>
         ),
+        children: [
+          {
+            path: "send-parcel",
+            Component: SendParcel,
+          },
+          {
+            path: "my-parcels",
+            Component: MyParcels,
+          },
+          {
+            path: "my-parcels/:id",
+            Component: ParcelDetails,
+          },
+        ],
       },
     ],
   },

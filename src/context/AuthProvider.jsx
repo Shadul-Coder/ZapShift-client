@@ -8,7 +8,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import auth from "../firebase/firebase.config";
 import AuthContext from "./AuthContext";
 
@@ -17,6 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const dashRef = useRef();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (cur) => {
       setUser(cur);
@@ -57,6 +58,7 @@ const AuthProvider = ({ children }) => {
     update,
     resetPassword,
     signOutuser,
+    dashRef,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

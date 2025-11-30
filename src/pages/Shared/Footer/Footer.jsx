@@ -4,6 +4,7 @@ import social2 from "../../../assets/instagram.png";
 import social3 from "../../../assets/linkedin.png";
 import social4 from "../../../assets/x.png";
 import social5 from "../../../assets/youtube.png";
+import logo from "../../../assets/Logo.png";
 
 const Footer = () => {
   const footerlinks = [
@@ -18,8 +19,8 @@ const Footer = () => {
   return (
     <div className="bg-secondary text-white mb-3 sm:mb-3.5 md:mb-4 lg:mb-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] rounded-2xl">
       <div className="space-y-7 md:space-y-9 xl:space-y-11 p-7 pb-0 sm:p-9 sm:pb-7 md:p-11 md:pb-0 lg:p-13 lg:pb-0 xl:p-15 xl:pb-0">
-        <Link to={"/"} className="flex justify-center items-end">
-          <img src="./Logo.png" alt="" className="h-[60px] lg:h-[70px]" />
+        <Link to={"/"} className="flex justify-center items-end cursor-default">
+          <img src={logo} alt="" className="h-[60px] lg:h-[70px]" />
           <h1 className="text-3xl font-bold -ml-5 lg:text-4xl">ZapShift</h1>
         </Link>
         <p className="text-center mx-auto md:w-[70%] lg:w-[60%]">

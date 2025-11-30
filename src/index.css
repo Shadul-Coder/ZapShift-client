@@ -82,9 +82,9 @@ header a.active {
 }
 
 .swal2-confirm {
-  @apply text-[#03373d] bg-[#caeb66] hover:bg-[#c3e460] active:bg-[#bddc5c];
+  @apply text-[#03373d] bg-[#caeb66] hover:bg-[#c3e460] active:bg-[#bddc5c] transition-all duration-200;
 }
 
 .swal2-cancel {
-  
+  @apply bg-[#f3e1e1] text-[#e83330] hover:bg-[#e9d8d8] active:bg-[#e0cfcf] transition-all duration-200;
 }

@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { useForm, useWatch } from "react-hook-form";
-import useAxios from "../../hooks/useAxios";
-import Loading from "../../components/Loading/Loading";
 import Swal from "sweetalert2";
-import useSecure from "../../hooks/useSecure";
+import useAxios from "../../../hooks/useAxios";
+import Loading from "../../../components/Loading/Loading";
+import useSecure from "../../../hooks/useSecure";
+import { useNavigate } from "react-router";
+import useAuth from "../../../hooks/useAuth";
 
 const SendParcel = () => {
+  const { user } = useAuth();
   const axios = useAxios();
   const secure = useSecure();
   const { data, isLoading } = useQuery({
@@ -17,8 +20,8 @@ const SendParcel = () => {
     handleSubmit,
     formState: { errors },
     control,
-    reset,
   } = useForm();
+  const navigate = useNavigate();
   const handleParcel = (formData) => {
     const deliveryCharge = parseInt(
       calculatePrice(
@@ -38,7 +41,7 @@ const SendParcel = () => {
       confirmButtonText: "Proceed to Pay",
     }).then((result) => {
       if (result.isConfirmed) {
-        const parcelsData = { ...formData, deliveryCharge };
+        const parcelsData = { ...formData, deliveryCharge, email: user.email };
         secure.post("/parcels", parcelsData).then((res) => {
           if (res.data.insertedId) {
             Swal.fire({
@@ -46,7 +49,7 @@ const SendParcel = () => {
               text: "Complete payment to confirm delivery",
               icon: "success",
             });
-            reset();
+            navigate("/dashboard/my-parcels");
           }
         });
       }
@@ -68,22 +71,22 @@ const SendParcel = () => {
   const calculatePrice = (isDoc, senDis, recDis, wei) => {
     if (isDoc === "true") {
       if (senDis === recDis) {
-        return 60;
+        return 70;
       } else {
-        return 80;
+        return 90;
       }
     } else {
       if (wei > 3.0) {
         if (senDis === recDis) {
-          return 110 + (wei - 3.0) * 40;
+          return 130 + (wei - 3.0) * 50;
         } else {
-          return 150 + (wei - 3.0) * 40 + 40;
+          return 170 + (wei - 3.0) * 50 + 50;
         }
       } else {
         if (senDis === recDis) {
-          return 110;
+          return 130;
         } else {
-          return 150;
+          return 170;
         }
       }
     }
@@ -94,7 +97,7 @@ const SendParcel = () => {
   return (
     <>
       <title>Send Parcel | ZapShift</title>
-      <section className="bg-white my-3 sm:my-3.5 md:my-4 lg:my-4.5 p-6 sm:p-9 md:p-11 lg:p-13 xl:p-15 max-w-7xl mx-auto w-[95%] lg:w-[97%] rounded-2xl">
+      <section className="p-6 sm:p-9 md:p-11 lg:p-13 xl:p-15">
         <h1 className="text-3xl md:text-start my-7 lg:text-5xl sm:my-9 md:mt-0 lg:mb-11 font-bold text-center sm:text-4xl">
           Send A Parcel
         </h1>
