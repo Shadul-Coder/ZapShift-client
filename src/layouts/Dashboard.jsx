@@ -2,6 +2,7 @@ import { BsBoxes } from "react-icons/bs";
 import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
+import { LuHistory } from "react-icons/lu";
 
 const Dashboard = () => {
   const { dashRef } = useAuth();
@@ -32,7 +33,7 @@ const Dashboard = () => {
                 <li>
                   <Link
                     to={"/dashboard/send-parcel"}
-                    className="active:bg-[#F4FBE0] rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="Send Parcel"
                   >
                     <SlSocialDropbox className="my-1.5 is-drawer-close:text-[19px]" />
@@ -42,11 +43,23 @@ const Dashboard = () => {
                 <li>
                   <Link
                     to={"/dashboard/my-parcels"}
-                    className="active:bg-[#F4FBE0] rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
                     data-tip="My Parcels"
                   >
                     <BsBoxes className="my-1.5 is-drawer-close:text-[19px]" />
                     <span className="is-drawer-close:hidden">My Parcels</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/dashboard/payment-history"}
+                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Payment History"
+                  >
+                    <LuHistory className="my-1.5 is-drawer-close:text-[19px]" />
+                    <span className="is-drawer-close:hidden">
+                      Payment History
+                    </span>
                   </Link>
                 </li>
               </ul>

@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 import { useLocation, useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
+import { SlSocialDropbox } from "react-icons/sl";
+import { SiTicktick } from "react-icons/si";
+import { MdPendingActions } from "react-icons/md";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -104,6 +107,63 @@ const MyParcels = () => {
         <h1 className="text-3xl md:text-start my-7 lg:text-5xl sm:my-9 md:mt-0 lg:mb-11 font-bold text-center sm:text-4xl">
           All My Parcels
         </h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 lg:mb-7">
+          <div className="bg-base-100 border border-base-300 rounded-2xl p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-base-content/70 font-medium">
+                  Total Parcels
+                </p>
+                <p className="text-2xl text-secondary font-bold mt-1">
+                  {parcels.length}
+                </p>
+              </div>
+              <div className="p-3 bg-base-200 rounded-xl">
+                <span className="text-secondary text-xl">
+                  <SlSocialDropbox />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-base-100 border border-base-300 rounded-2xl p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-base-content/70 font-medium">Paid</p>
+                <p className="text-2xl text-secondary font-bold mt-1">
+                  {
+                    parcels.filter((item) => item.paymentStatus === "paid")
+                      .length
+                  }
+                </p>
+              </div>
+              <div className="p-3 bg-base-200 rounded-xl">
+                <span className="text-secondary text-xl">
+                  <SiTicktick />
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="bg-base-100 border border-base-300 rounded-2xl p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-base-content/70 font-medium">
+                  Unpaid
+                </p>
+                <p className="text-2xl text-secondary font-bold mt-1">
+                  {
+                    parcels.filter((item) => item.paymentStatus !== "paid")
+                      .length
+                  }
+                </p>
+              </div>
+              <div className="p-3 bg-base-200 rounded-xl">
+                <span className="text-secondary text-xl">
+                  <MdPendingActions />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
         {parcels.length === 0 ? (
           <div className="text-center py-12 md:py-16 rounded-2xl border border-gray-200">
             <div className="w-15 h-15 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
@@ -224,12 +284,14 @@ const MyParcels = () => {
                           >
                             View
                           </button>
-                          <button
-                            onClick={() => handleDelete(item._id)}
-                            className="text-sm font-medium bg-[#f3e1e1] text-[#e83330] hover:bg-[#e9d8d8] active:bg-[#e0cfcf] transition-all duration-200 px-4 py-2 rounded-lg cursor-pointer"
-                          >
-                            Delete
-                          </button>
+                          {item.paymentStatus === "unpaid" && (
+                            <button
+                              onClick={() => handleDelete(item._id)}
+                              className="text-sm font-medium bg-[#f3e1e1] text-[#e83330] hover:bg-[#e9d8d8] active:bg-[#e0cfcf] transition-all duration-200 px-4 py-2 rounded-lg cursor-pointer"
+                            >
+                              Delete
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

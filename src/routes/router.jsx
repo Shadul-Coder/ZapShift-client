@@ -11,7 +11,8 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../layouts/Dashboard";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import SendParcel from "../pages/Dashboard/SendParcel/SendParcel";
-import ParcelDetails from "../pages/Dashboard/MyParcels/ParcelDetails";
+import ParcelDetails from "../pages/Dashboard/ParcelDetails/ParcelDetails";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
           {
             path: "my-parcels/:id",
             Component: ParcelDetails,
+          },
+          {
+            path: "payment-history",
+            Component: PaymentHistory,
           },
         ],
       },
