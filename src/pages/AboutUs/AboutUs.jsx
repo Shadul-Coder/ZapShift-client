@@ -135,8 +135,9 @@ const AboutUs = () => {
           About Us
         </h1>
         <p className="text-center lg:w-[60%] sm:text-lg md:text-start pb-7 sm:pb-9 lg:pb-11">
-          ZapShift ensures fast, reliable parcel delivery with real-time
-          tracking and seamless logistics for businesses and individuals.
+          ZAPSHIFT is a modern delivery platform. We connect businesses with
+          reliable, independent raiders to make every pickup and delivery fast,
+          simple, and transparent.
         </p>
         <div className="border-b border-gray-200"></div>
         <div className="flex justify-between pt-5 pb-7 sm:pt-7 sm:pb-9 lg:pt-9 lg:pb-11 lg:max-w-3xl">

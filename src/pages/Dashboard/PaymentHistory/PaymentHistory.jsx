@@ -7,7 +7,7 @@ import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 const PaymentHistory = () => {
   const { user } = useAuth();
   const secure = useSecure();
-  const { data, isLoading } = useQuery({
+  const { data = [], isLoading } = useQuery({
     queryKey: ["payments", user.email],
     queryFn: () =>
       secure.get(`/payments/${user.email}`).then((res) => res.data),

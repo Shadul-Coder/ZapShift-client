@@ -5,9 +5,11 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
 
 const Signin = () => {
   const { user, setLoading, googleSignIn, emailSignIn } = useAuth();
+  const axiosIns = useAxios();
   const location = useLocation();
   const {
     register,
@@ -52,10 +54,16 @@ const Signin = () => {
   };
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(() => {
+      .then((res) => {
+        const userInfo = {
+          name: res.user.displayName,
+          email: res.user.email,
+          photo: res.user.photoURL,
+        };
+        axiosIns.post("/users", userInfo).then().catch();
         Swal.fire({
           icon: "success",
-          title: "SignIn Successful!",
+          title: "SignUp Successful!",
           showConfirmButton: false,
           timer: 1500,
         });

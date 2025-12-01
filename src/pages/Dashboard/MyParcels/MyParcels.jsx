@@ -66,8 +66,6 @@ const MyParcels = () => {
       text: `Pay $${parcel.deliveryCharge} for delivery. Continue to checkout?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
       confirmButtonText: "Yes, Proceed",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -208,7 +206,7 @@ const MyParcels = () => {
                     <th className="py-3 px-2 sm:py-4 text-left text-xs font-semibold text-secondary uppercase tracking-wider">
                       Payment
                     </th>
-                    <th className="py-3 px-2 sm:py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider">
+                    <th className="py-3 px-2 sm:py-4 text-xs font-semibold text-secondary uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>

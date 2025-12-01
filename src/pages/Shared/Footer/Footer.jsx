@@ -4,7 +4,7 @@ import social2 from "../../../assets/instagram.png";
 import social3 from "../../../assets/linkedin.png";
 import social4 from "../../../assets/x.png";
 import social5 from "../../../assets/youtube.png";
-import logo from "../../../assets/Logo.png";
+import logo from "../../../assets/logo.png";
 
 const Footer = () => {
   const footerlinks = [

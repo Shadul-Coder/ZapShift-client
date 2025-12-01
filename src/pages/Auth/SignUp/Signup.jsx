@@ -7,10 +7,12 @@ import { useForm, useWatch } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAxios from "../../../hooks/useAxios";
 
 const Signup = () => {
   const { user, setUser, setLoading, googleSignIn, emailRegister, update } =
     useAuth();
+  const axiosIns = useAxios();
   const location = useLocation();
   const {
     register,
@@ -56,6 +58,12 @@ const Signup = () => {
             update(res.user, data.name, url)
               .then(() => {
                 setUser({ ...res.user });
+                const userInfo = {
+                  name: data.name,
+                  email: data.email,
+                  photo: url,
+                };
+                axiosIns.post("/users", userInfo).then().catch();
               })
               .catch((error) => {
                 setLoading(false);
@@ -80,7 +88,13 @@ const Signup = () => {
   };
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(() => {
+      .then((res) => {
+        const userInfo = {
+          name: res.user.displayName,
+          email: res.user.email,
+          photo: res.user.photoURL,
+        };
+        axiosIns.post("/users", userInfo).then().catch();
         Swal.fire({
           icon: "success",
           title: "SignUp Successful!",

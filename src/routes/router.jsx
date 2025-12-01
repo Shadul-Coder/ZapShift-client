@@ -13,6 +13,9 @@ import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import SendParcel from "../pages/Dashboard/SendParcel/SendParcel";
 import ParcelDetails from "../pages/Dashboard/ParcelDetails/ParcelDetails";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import BeARider from "../pages/BeARider/BeARider";
+import ManageRiders from "../pages/Dashboard/ManageRiders/ManageRiders";
+import RiderDetails from "../pages/Dashboard/RiderDetails/RiderDetails";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "about-us",
         Component: AboutUs,
+      },
+      {
+        path: "be-a-rider",
+        element: (
+          <PrivateRoute>
+            <BeARider />
+          </PrivateRoute>
+        ),
       },
       {
         path: "dashboard",
@@ -54,6 +65,14 @@ const router = createBrowserRouter([
           {
             path: "payment-history",
             Component: PaymentHistory,
+          },
+          {
+            path: "manage-riders",
+            Component: ManageRiders,
+          },
+          {
+            path: "manage-riders/:id",
+            Component: RiderDetails,
           },
         ],
       },

@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
 import { LuHistory } from "react-icons/lu";
+import { PiPersonSimpleBikeBold } from "react-icons/pi";
 
 const Dashboard = () => {
   const { dashRef } = useAuth();
@@ -59,6 +60,18 @@ const Dashboard = () => {
                     <LuHistory className="my-1.5 is-drawer-close:text-[19px]" />
                     <span className="is-drawer-close:hidden">
                       Payment History
+                    </span>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to={"/dashboard/manage-riders"}
+                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Riders"
+                  >
+                    <PiPersonSimpleBikeBold className="my-1.5 is-drawer-close:text-[19px]" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Riders
                     </span>
                   </Link>
                 </li>
