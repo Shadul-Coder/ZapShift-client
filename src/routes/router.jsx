@@ -16,6 +16,8 @@ import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import BeARider from "../pages/BeARider/BeARider";
 import ManageRiders from "../pages/Dashboard/ManageRiders/ManageRiders";
 import RiderDetails from "../pages/Dashboard/RiderDetails/RiderDetails";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -68,11 +70,27 @@ const router = createBrowserRouter([
           },
           {
             path: "manage-riders",
-            Component: ManageRiders,
+            element: (
+              <AdminRoute>
+                <ManageRiders />
+              </AdminRoute>
+            ),
           },
           {
             path: "manage-riders/:id",
-            Component: RiderDetails,
+            element: (
+              <AdminRoute>
+                <RiderDetails />
+              </AdminRoute>
+            ),
+          },
+          {
+            path: "manage-users",
+            element: (
+              <AdminRoute>
+                <ManageUsers />
+              </AdminRoute>
+            ),
           },
         ],
       },

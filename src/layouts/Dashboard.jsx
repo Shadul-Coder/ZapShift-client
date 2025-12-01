@@ -4,9 +4,16 @@ import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
 import { LuHistory } from "react-icons/lu";
 import { PiPersonSimpleBikeBold } from "react-icons/pi";
+import { TbUsersGroup } from "react-icons/tb";
+import useRole from "../hooks/useRole";
+import Loading from "../components/Loading/Loading";
 
 const Dashboard = () => {
   const { dashRef } = useAuth();
+  const { myRole, roleLoading } = useRole();
+  if (roleLoading) {
+    return <Loading />;
+  }
   return (
     <>
       <title>Dashboard | ZapShift</title>
@@ -63,18 +70,34 @@ const Dashboard = () => {
                     </span>
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to={"/dashboard/manage-riders"}
-                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Manage Riders"
-                  >
-                    <PiPersonSimpleBikeBold className="my-1.5 is-drawer-close:text-[19px]" />
-                    <span className="is-drawer-close:hidden">
-                      Manage Riders
-                    </span>
-                  </Link>
-                </li>
+                {myRole === "admin" && (
+                  <>
+                    <li>
+                      <Link
+                        to={"/dashboard/manage-riders"}
+                        className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Manage Riders"
+                      >
+                        <PiPersonSimpleBikeBold className="my-1.5 is-drawer-close:text-[19px]" />
+                        <span className="is-drawer-close:hidden">
+                          Manage Riders
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to={"/dashboard/manage-users"}
+                        className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Manage Users"
+                      >
+                        <TbUsersGroup className="my-1.5 is-drawer-close:text-[19px]" />
+                        <span className="is-drawer-close:hidden">
+                          Manage Users
+                        </span>
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>

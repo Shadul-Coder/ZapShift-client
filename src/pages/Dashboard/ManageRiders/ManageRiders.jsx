@@ -17,7 +17,7 @@ const ManageRiders = () => {
     refetch,
   } = useQuery({
     queryKey: ["riders"],
-    queryFn: () => secure("riders").then((res) => res.data),
+    queryFn: () => secure("/riders").then((res) => res.data),
   });
   if (isLoading) {
     return <Loading />;
@@ -131,7 +131,7 @@ const ManageRiders = () => {
         </div>
         {data.length === 0 ? (
           <div className="text-center py-12 md:py-16 rounded-2xl border border-gray-200">
-            <div className="w-15 h-15 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 bg-gray-100 rounded-full flex riders-center justify-center">
+            <div className="w-15 h-15 md:w-24 md:h-24 mx-auto mb-4 md:mb-6 bg-gray-100 rounded-full flex items-center justify-center">
               <HiOutlineClipboardDocumentList className="text-gray-400 text-2xl md:text-3xl" />
             </div>
             <h3 className="text-xl md:text-2xl font-bold text-gray-700 mb-2">
@@ -186,10 +186,10 @@ const ManageRiders = () => {
                       <td className="py-3 px-3 sm:py-4 sm:px-4">{index + 1}</td>
                       <td className="py-3 px-3 sm:py-4">{rider.name}</td>
                       <td className="py-3 px-3 sm:py-4">{rider.nidNo}</td>
-                      <td className="py-3 px-3 sm:py-4">
+                      <td className="py-3 px-3 sm:py-4 font-medium">
                         {rider.district}, {rider.division}
                       </td>
-                      <td className="py-3 px-3 sm:py-4">{rider.bikeModel}</td>
+                      <td className="py-3 px-3 sm:py-4 font-medium">{rider.bikeModel}</td>
                       <td
                         className={`py-3 px-3 sm:py-4 ${
                           rider.status === "approved" && "text-[#0ab010]"
