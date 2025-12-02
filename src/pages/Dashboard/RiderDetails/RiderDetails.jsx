@@ -35,6 +35,7 @@ const RiderDetails = () => {
                   <p>License No</p>
                   <p>Region</p>
                   <p>Status</p>
+                  {data.status === "approved" && <p>Work Status</p>}
                 </div>
                 <div className="font-medium md:text-lg lg:text-base xl:text-lg">
                   <p>
@@ -67,6 +68,17 @@ const RiderDetails = () => {
                     {data.status === "pending" && "Pending"}
                     {data.status === "rejected" && "Rejected"}
                   </p>
+                  {data.status === "approved" && (
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.workStatus === "available" && (
+                        <span className="text-[#0ab010]">Available</span>
+                      )}
+                      {data.workStatus === "assigned" && (
+                        <span className="text-[#f99d25]">Assigned</span>
+                      )}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

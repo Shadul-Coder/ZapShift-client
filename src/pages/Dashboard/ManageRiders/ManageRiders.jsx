@@ -189,7 +189,9 @@ const ManageRiders = () => {
                       <td className="py-3 px-3 sm:py-4 font-medium">
                         {rider.district}, {rider.division}
                       </td>
-                      <td className="py-3 px-3 sm:py-4 font-medium">{rider.bikeModel}</td>
+                      <td className="py-3 px-3 sm:py-4 font-medium">
+                        {rider.bikeModel}
+                      </td>
                       <td
                         className={`py-3 px-3 sm:py-4 ${
                           rider.status === "approved" && "text-[#0ab010]"

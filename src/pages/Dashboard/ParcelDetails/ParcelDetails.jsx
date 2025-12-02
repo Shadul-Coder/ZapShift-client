@@ -90,63 +90,89 @@ const ParcelDetails = () => {
               </div>
             </div>
           </div>
-          <div className="bg-[#f5f5f5] p-3.5 sm:p-6 md:p-7 md:rounded-2xl rounded-xl">
-            <h2 className="mb-2 text-xl md:text-2xl font-semibold text-secondary">
-              Parcel Info
-            </h2>
-            <div className="flex gap-1.5">
-              <div className="text-gray-500 md:text-lg lg:text-base xl:text-lg font-medium">
-                <p>Title </p>
-                <p>Type </p>
-                <p>Weight </p>
-                <p>Charge </p>
-                <p>Payment Status </p>
-                <p>Delivery Status </p>
-                <p className="hidden md:block">Pickup Instruction </p>
-                <p className="hidden md:block">Delivery Instruction </p>
-                {data?.trackingID && <p>Tracking ID </p>}
-              </div>
-              <div className="font-medium md:text-lg lg:text-base xl:text-lg">
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.parcelName}
-                </p>
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.isDocument === "true" ? "Document" : "Non-Document"}
-                </p>
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.weight} KG
-                </p>
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>$
-                  {data.deliveryCharge}
-                </p>
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.paymentStatus === "paid" ? "Paid" : "Unpaid"}
-                </p>
-                <p>
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.deliveryStatus === "pending" && "Pending"}
-                </p>
-                <p className="hidden md:block">
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.pickupInstruction}
-                </p>
-                <p className="hidden md:block">
-                  <span className="px-2 sm:px-3 md:px-5">:</span>
-                  {data.deliveryInstruction}
-                </p>
-                {data?.trackingID && (
+          <div className="flex flex-col gap-3.5 lg:flex-row xl:gap-5">
+            <div className="bg-[#f5f5f5] p-3.5 sm:p-6 md:p-7 md:rounded-2xl rounded-xl lg:flex-1">
+              <h2 className="mb-2 text-xl md:text-2xl font-semibold text-secondary">
+                Parcel Info
+              </h2>
+              <div className="flex gap-1.5">
+                <div className="text-gray-500 md:text-lg lg:text-base xl:text-lg font-medium">
+                  <p>Title </p>
+                  <p>Type </p>
+                  <p>Weight </p>
+                  <p>Charge </p>
+                  <p>Payment Status </p>
+                  <p>Delivery Status </p>
+                  {data?.trackingID && <p>Tracking ID </p>}
+                </div>
+                <div className="font-medium md:text-lg lg:text-base xl:text-lg">
                   <p>
                     <span className="px-2 sm:px-3 md:px-5">:</span>
-                    {data.trackingID}
+                    {data.parcelName}
                   </p>
-                )}
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>
+                    {data.isDocument === "true" ? "Document" : "Non-Document"}
+                  </p>
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>
+                    {data.weight} KG
+                  </p>
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>$
+                    {data.deliveryCharge}
+                  </p>
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>
+                    {data.paymentStatus === "paid" ? "Paid" : "Unpaid"}
+                  </p>
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>
+                    {data.deliveryStatus === "pending" && "Pending"}
+                    {data.deliveryStatus === "assigned" && "Assigned"}
+                  </p>
+                  {data?.trackingID && (
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.trackingID}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
+            {data?.riderInfo && (
+              <div className="bg-[#f5f5f5] p-3.5 sm:p-6 md:p-7 md:rounded-2xl rounded-xl lg:flex-1">
+                <h2 className="mb-2 text-xl md:text-2xl font-semibold text-secondary">
+                  Rider Info
+                </h2>
+                <div className="flex gap-1.5">
+                  <div className="text-gray-500 md:text-lg lg:text-base xl:text-lg font-medium">
+                    <p>Name </p>
+                    <p>Phone </p>
+                    <p>Email </p>
+                    <p>Bike Model </p>
+                  </div>
+                  <div className="font-medium md:text-lg lg:text-base xl:text-lg">
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.riderInfo.name}
+                    </p>
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.riderInfo.phoneNumber}
+                    </p>
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.riderInfo.email}
+                    </p>
+                    <p>
+                      <span className="px-2 sm:px-3 md:px-5">:</span>
+                      {data.riderInfo.bikeModel}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>

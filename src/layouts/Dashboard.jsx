@@ -1,4 +1,4 @@
-import { BsBoxes } from "react-icons/bs";
+import { BsBoxes, BsBoxSeam } from "react-icons/bs";
 import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
@@ -72,6 +72,18 @@ const Dashboard = () => {
                 </li>
                 {myRole === "admin" && (
                   <>
+                    <li>
+                      <Link
+                        to={"/dashboard/manage-parcels"}
+                        className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Manage Parcels"
+                      >
+                        <BsBoxSeam className="my-1.5 is-drawer-close:text-[19px]" />
+                        <span className="is-drawer-close:hidden">
+                          Manage Parcels
+                        </span>
+                      </Link>
+                    </li>
                     <li>
                       <Link
                         to={"/dashboard/manage-riders"}

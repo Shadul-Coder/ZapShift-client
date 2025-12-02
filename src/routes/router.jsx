@@ -18,6 +18,7 @@ import ManageRiders from "../pages/Dashboard/ManageRiders/ManageRiders";
 import RiderDetails from "../pages/Dashboard/RiderDetails/RiderDetails";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import ManageParcels from "../pages/Dashboard/ManageParcels/ManageParcels";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
           {
             path: "payment-history",
             Component: PaymentHistory,
+          },
+          {
+            path: "manage-parcels",
+            Component: ManageParcels,
           },
           {
             path: "manage-riders",
