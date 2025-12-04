@@ -70,7 +70,7 @@ const ManageUsers = () => {
   };
   return (
     <>
-      <title>Manage Users</title>
+      <title>Manage Users | ZapShift</title>
       <section className="p-6 sm:p-9 md:p-11 lg:p-13 xl:p-15">
         <h1 className="text-3xl md:text-start my-7 lg:text-5xl sm:my-9 md:mt-0 lg:mb-11 font-bold text-center sm:text-4xl">
           Manage All Users
@@ -169,7 +169,7 @@ const ManageUsers = () => {
                         <td className="py-3 px-3 sm:py-4 truncate">
                           {user.name}
                         </td>
-                        <td className="py-3 px-3 sm:py-4">{user.email}</td>
+                        <td className="py-3 px-3 sm:py-4 font-medium">{user.email}</td>
                         <td className="py-3 px-3 sm:py-4 font-medium">
                           {user.role === "user" && "User"}
                           {user.role === "rider" && "Rider"}

@@ -35,14 +35,16 @@ const ManageParcels = () => {
       phoneNumber: riderData.phoneNumber,
       email: riderData.email,
       bikeModel: riderData.bikeModel,
-      raiderID: riderData._id,
+      riderID: riderData._id,
       parcelID: curParcel.parcelID,
       paymentID: curParcel._id,
+      trackingID: curParcel.trackingID,
     };
     secure.patch("/assign", info).then((res) => {
       if (
         res.data.parcelResult.modifiedCount &&
-        res.data.riderResult.modifiedCount
+        res.data.paymentResult.modifiedCount &&
+        res.data.trackResult.modifiedCount
       ) {
         refetch();
         riderRefetch();
@@ -120,7 +122,7 @@ const ManageParcels = () => {
                       }`}
                     >
                       <td className="py-3 px-3 sm:py-4 sm:px-4">{index + 1}</td>
-                      <td className="py-3 px-3 sm:py-4">
+                      <td className="py-3 px-3 sm:py-4 font-medium">
                         {parcel.transactionID}
                       </td>
                       <td className="py-3 px-3 sm:py-4">
@@ -135,10 +137,10 @@ const ManageParcels = () => {
                           })
                           .replace(",", "")}
                       </td>
-                      <td className="py-3 px-3 sm:py-4">
+                      <td className="py-3 px-3 sm:py-4 font-medium">
                         {parcel.district}, {parcel.division}
                       </td>
-                      <td className="py-3 px-3 sm:py-4">
+                      <td className="py-3 px-3 sm:py-4 text-[#f99d25]">
                         {parcel.deliveryStatus}
                       </td>
                       <td className="py-3 px-4 sm:py-4 sm:px-5 lg:px-6">

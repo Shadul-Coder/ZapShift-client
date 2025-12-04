@@ -77,6 +77,9 @@ const RiderDetails = () => {
                       {data.workStatus === "assigned" && (
                         <span className="text-[#f99d25]">Assigned</span>
                       )}
+                      {data.workStatus === "in-transit" && (
+                        <span className="text-[#e83330]">In-Transit</span>
+                      )}
                     </p>
                   )}
                 </div>

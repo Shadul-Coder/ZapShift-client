@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { SlSocialDropbox } from "react-icons/sl";
 import { SiTicktick } from "react-icons/si";
 import { MdPendingActions } from "react-icons/md";
+import { BsBoxSeam } from "react-icons/bs";
 
 const MyParcels = () => {
   const { user } = useAuth();
@@ -118,7 +119,7 @@ const MyParcels = () => {
               </div>
               <div className="p-3 bg-base-200 rounded-xl">
                 <span className="text-secondary text-xl">
-                  <SlSocialDropbox />
+                  <BsBoxSeam />
                 </span>
               </div>
             </div>
@@ -145,18 +146,19 @@ const MyParcels = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-base-content/70 font-medium">
-                  Unpaid
+                  Delivered
                 </p>
                 <p className="text-2xl text-secondary font-bold mt-1">
                   {
-                    parcels.filter((item) => item.paymentStatus !== "paid")
-                      .length
+                    parcels.filter(
+                      (item) => item.deliveryStatus === "delivered"
+                    ).length
                   }
                 </p>
               </div>
               <div className="p-3 bg-base-200 rounded-xl">
                 <span className="text-secondary text-xl">
-                  <MdPendingActions />
+                  <SlSocialDropbox />
                 </span>
               </div>
             </div>

@@ -19,6 +19,10 @@ import RiderDetails from "../pages/Dashboard/RiderDetails/RiderDetails";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import ManageParcels from "../pages/Dashboard/ManageParcels/ManageParcels";
+import RiderRoute from "./RiderRoute";
+import AssignedDeliveries from "../pages/Dashboard/AssignedDeliveries/AssignedDeliveries";
+import MyDeliveries from "../pages/Dashboard/MyDeliveries/MyDeliveries";
+import TrackOrder from "../pages/TrackOrder/TrackOrder";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +32,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "track-order",
+        Component: TrackOrder,
       },
       {
         path: "coverage",
@@ -68,6 +76,22 @@ const router = createBrowserRouter([
           {
             path: "payment-history",
             Component: PaymentHistory,
+          },
+          {
+            path: "assigned-deliveries",
+            element: (
+              <RiderRoute>
+                <AssignedDeliveries />
+              </RiderRoute>
+            ),
+          },
+          {
+            path: "my-deliveries",
+            element: (
+              <RiderRoute>
+                <MyDeliveries />
+              </RiderRoute>
+            ),
           },
           {
             path: "manage-parcels",

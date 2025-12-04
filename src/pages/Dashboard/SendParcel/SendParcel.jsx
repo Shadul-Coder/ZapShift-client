@@ -7,6 +7,7 @@ import useSecure from "../../../hooks/useSecure";
 import { useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 
+//Parcel Created, Payment Completed, Rider Assigned, Parcel Picked Up, Parcel Delivered
 const SendParcel = () => {
   const { user } = useAuth();
   const axios = useAxios();
@@ -43,7 +44,10 @@ const SendParcel = () => {
       if (result.isConfirmed) {
         const parcelsData = { ...formData, deliveryCharge, email: user.email };
         secure.post("/parcels", parcelsData).then((res) => {
-          if (res.data.insertedId) {
+          if (
+            res.data.parcelResult.insertedId &&
+            res.data.trackResult.insertedId
+          ) {
             Swal.fire({
               title: "Parcel Scheduled!",
               text: "Complete payment to confirm delivery",

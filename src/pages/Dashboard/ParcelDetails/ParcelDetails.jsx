@@ -103,7 +103,7 @@ const ParcelDetails = () => {
                   <p>Charge </p>
                   <p>Payment Status </p>
                   <p>Delivery Status </p>
-                  {data?.trackingID && <p>Tracking ID </p>}
+                  <p>Tracking ID </p>
                 </div>
                 <div className="font-medium md:text-lg lg:text-base xl:text-lg">
                   <p>
@@ -130,13 +130,13 @@ const ParcelDetails = () => {
                     <span className="px-2 sm:px-3 md:px-5">:</span>
                     {data.deliveryStatus === "pending" && "Pending"}
                     {data.deliveryStatus === "assigned" && "Assigned"}
+                    {data.deliveryStatus === "picked-up" && "Picked Up"}
+                    {data.deliveryStatus === "delivered" && "Delivered"}
                   </p>
-                  {data?.trackingID && (
-                    <p>
-                      <span className="px-2 sm:px-3 md:px-5">:</span>
-                      {data.trackingID}
-                    </p>
-                  )}
+                  <p>
+                    <span className="px-2 sm:px-3 md:px-5">:</span>
+                    {data.trackingID}
+                  </p>
                 </div>
               </div>
             </div>

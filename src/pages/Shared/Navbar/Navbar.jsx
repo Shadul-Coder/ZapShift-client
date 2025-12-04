@@ -13,7 +13,7 @@ const Navbar = () => {
   const { user, signOutuser, dashRef } = useAuth();
   const location = useLocation();
   const navlinks = [
-    ["Services", "services", <LuClipboardList className="text-lg" />],
+    ["Track Order", "track-order", <LuClipboardList className="text-lg" />],
     ["Coverage", "coverage", <PiMapPinAreaBold className="text-lg" />],
     ["About Us", "about-us", <FaInfoCircle className="text-lg" />],
     ["Pricing", "pricing", <LuBadgeDollarSign className="text-lg" />],

@@ -2,11 +2,12 @@ import { BsBoxes, BsBoxSeam } from "react-icons/bs";
 import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
-import { LuHistory } from "react-icons/lu";
+import { LuCodesandbox, LuHistory } from "react-icons/lu";
 import { PiPersonSimpleBikeBold } from "react-icons/pi";
 import { TbUsersGroup } from "react-icons/tb";
 import useRole from "../hooks/useRole";
 import Loading from "../components/Loading/Loading";
+import { RiEBikeLine } from "react-icons/ri";
 
 const Dashboard = () => {
   const { dashRef } = useAuth();
@@ -70,6 +71,34 @@ const Dashboard = () => {
                     </span>
                   </Link>
                 </li>
+                {myRole === "rider" && (
+                  <>
+                    <li>
+                      <Link
+                        to={"/dashboard/assigned-deliveries"}
+                        className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="Assigned Parcels"
+                      >
+                        <LuCodesandbox className="my-1.5 is-drawer-close:text-[19px]" />
+                        <span className="is-drawer-close:hidden">
+                          Assigned Parcels
+                        </span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to={"/dashboard/my-deliveries"}
+                        className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                        data-tip="My Deliveries"
+                      >
+                        <RiEBikeLine className="my-1.5 is-drawer-close:text-[19px]" />
+                        <span className="is-drawer-close:hidden">
+                          My Deliveries
+                        </span>
+                      </Link>
+                    </li>
+                  </>
+                )}
                 {myRole === "admin" && (
                   <>
                     <li>
