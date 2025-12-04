@@ -1,6 +1,6 @@
 import { CgMenuLeftAlt, CgMenuRightAlt } from "react-icons/cg";
 import { FaInfoCircle } from "react-icons/fa";
-import { LuBadgeDollarSign, LuClipboardList } from "react-icons/lu";
+import { LuClipboardList } from "react-icons/lu";
 import { PiMapPinAreaBold } from "react-icons/pi";
 import { Link, NavLink, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
@@ -8,15 +8,16 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { FiSidebar } from "react-icons/fi";
 import logo from "../../../assets/logo.png";
 import { RiEBikeLine } from "react-icons/ri";
+import { GrHomeRounded } from "react-icons/gr";
 
 const Navbar = () => {
   const { user, signOutuser, dashRef } = useAuth();
   const location = useLocation();
   const navlinks = [
+    ["Home", "", <GrHomeRounded className="text-lg" />],
     ["Track Order", "track-order", <LuClipboardList className="text-lg" />],
     ["Coverage", "coverage", <PiMapPinAreaBold className="text-lg" />],
     ["About Us", "about-us", <FaInfoCircle className="text-lg" />],
-    ["Pricing", "pricing", <LuBadgeDollarSign className="text-lg" />],
     ["Be a Rider", "be-a-rider", <RiEBikeLine className="text-lg" />],
   ];
   const handleSignOut = () => {
