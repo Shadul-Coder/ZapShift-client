@@ -3,9 +3,17 @@
 ## 📦 Overview
 ZapShift is a full-featured parcel delivery web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform connects users, riders, and administrators in a seamless logistics ecosystem, facilitating parcel delivery services across Bangladesh.
 
-## 🌐 Live Demo
-- **Client:** [https://shadul-zapshift.netlify.app/]
-- **Server:** [https://shadul-zap-shift-server.vercel.app/]
+# 🌐 Live Demo
+- **Client:** [https://shadul-zapshift.netlify.app/](https://shadul-zapshift.netlify.app/)
+- **Server:** [https://shadul-zap-shift-server.vercel.app/](https://shadul-zap-shift-server.vercel.app/)
+
+### 🔐 Admin Demo Access
+For testing admin features, use these credentials:
+
+**Admin Email:** shadulislam@gmail.com  
+**Admin Password:** Asdfg0
+
+*Note: This is a demo account. Please use responsibly and do not modify sensitive system settings.*
 
 ## 🎯 Features
 
