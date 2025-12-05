@@ -1,9 +1,11 @@
 import { Link, Outlet } from "react-router";
 import authimg from "../assets/auth-image.png";
+import ScrollToTop from "../utility/ScrollToTop";
 
 const AuthPage = () => {
   return (
     <>
+      <ScrollToTop />
       <header></header>
       <main className="min-h-screen">
         <section className="min-h-screen flex">

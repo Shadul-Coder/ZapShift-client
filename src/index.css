@@ -88,3 +88,12 @@ header a.active {
 .swal2-cancel {
   @apply bg-[#f3e1e1] text-[#e83330] hover:bg-[#e9d8d8] active:bg-[#e0cfcf] transition-all duration-200;
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #03373d !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #03373d !important;
+}

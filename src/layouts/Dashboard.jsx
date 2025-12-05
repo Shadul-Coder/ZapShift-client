@@ -8,6 +8,7 @@ import { TbUsersGroup } from "react-icons/tb";
 import useRole from "../hooks/useRole";
 import Loading from "../components/Loading/Loading";
 import { RiEBikeLine } from "react-icons/ri";
+import ScrollToTop from "../utility/ScrollToTop";
 
 const Dashboard = () => {
   const { dashRef } = useAuth();
@@ -17,6 +18,7 @@ const Dashboard = () => {
   }
   return (
     <>
+      <ScrollToTop />
       <title>Dashboard | ZapShift</title>
       <section className="my-3 sm:my-3.5 md:my-4 lg:my-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%]">
         <div className="drawer lg:drawer-open">

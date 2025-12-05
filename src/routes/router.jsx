@@ -24,11 +24,13 @@ import AssignedDeliveries from "../pages/Dashboard/AssignedDeliveries/AssignedDe
 import MyDeliveries from "../pages/Dashboard/MyDeliveries/MyDeliveries";
 import TrackOrder from "../pages/TrackOrder/TrackOrder";
 import HomeDash from "../pages/Dashboard/Home/HomeDash";
+import Error from "../pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -133,6 +135,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: AuthPage,
+    errorElement: <Error />,
     children: [
       {
         path: "signin",
