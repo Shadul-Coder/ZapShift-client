@@ -2,7 +2,7 @@ import { BsBoxes, BsBoxSeam } from "react-icons/bs";
 import { Link, Outlet } from "react-router";
 import useAuth from "../hooks/useAuth";
 import { SlSocialDropbox } from "react-icons/sl";
-import { LuCodesandbox, LuHistory } from "react-icons/lu";
+import { LuCodesandbox, LuHistory, LuLayoutDashboard } from "react-icons/lu";
 import { PiPersonSimpleBikeBold } from "react-icons/pi";
 import { TbUsersGroup } from "react-icons/tb";
 import useRole from "../hooks/useRole";
@@ -39,6 +39,16 @@ const Dashboard = () => {
             ></label>
             <div className="bg-white lg:rounded-2xl min-h-full flex flex-col items-start is-drawer-close:w-15 is-drawer-open:w-55">
               <ul className="menu w-full grow">
+                <li>
+                  <Link
+                    to={"/dashboard"}
+                    className="active:bg-[#F4FBE0] active:text-secondary rounded-xl is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Dashboard"
+                  >
+                    <LuLayoutDashboard className="my-1.5 is-drawer-close:text-[19px]" />
+                    <span className="is-drawer-close:hidden">Dashboard</span>
+                  </Link>
+                </li>
                 <li>
                   <Link
                     to={"/dashboard/send-parcel"}

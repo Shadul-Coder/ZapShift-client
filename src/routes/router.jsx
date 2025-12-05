@@ -23,6 +23,7 @@ import RiderRoute from "./RiderRoute";
 import AssignedDeliveries from "../pages/Dashboard/AssignedDeliveries/AssignedDeliveries";
 import MyDeliveries from "../pages/Dashboard/MyDeliveries/MyDeliveries";
 import TrackOrder from "../pages/TrackOrder/TrackOrder";
+import HomeDash from "../pages/Dashboard/Home/HomeDash";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          {
+            index: true,
+            Component: HomeDash,
+          },
           {
             path: "send-parcel",
             Component: SendParcel,
