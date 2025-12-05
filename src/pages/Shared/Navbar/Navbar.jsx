@@ -1,6 +1,6 @@
 import { CgMenuLeftAlt, CgMenuRightAlt } from "react-icons/cg";
 import { FaInfoCircle } from "react-icons/fa";
-import { LuClipboardList } from "react-icons/lu";
+import { LuClipboardList, LuLayoutDashboard } from "react-icons/lu";
 import { PiMapPinAreaBold } from "react-icons/pi";
 import { Link, NavLink, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
@@ -154,17 +154,62 @@ const Navbar = () => {
           ></label>
           <div className="bg-base-200 menu min-h-full w-55 p-4 sm:w-75">
             <div className="flex flex-col gap-1.5 sm:gap-2 text-[#606060] font-medium">
-              {navlinks.map((link, index) => (
+              <NavLink
+                to={`/`}
+                className={
+                  "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
+                }
+              >
+                <GrHomeRounded className="text-lg" />
+                <span>Home</span>
+              </NavLink>
+              {user && (
                 <NavLink
-                  key={index}
-                  to={`/${link[1]}`}
+                  to={`/dashboard`}
                   className={
                     "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
                   }
                 >
-                  {link[2]} {link[0]}
+                  <LuLayoutDashboard className="text-lg" />
+                  <span>Dashboard</span>
                 </NavLink>
-              ))}
+              )}
+              <NavLink
+                to={`/track-order`}
+                className={
+                  "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
+                }
+              >
+                <LuClipboardList className="text-lg" />
+                <span>Track Order</span>
+              </NavLink>
+              <NavLink
+                to={`/coverage`}
+                className={
+                  "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
+                }
+              >
+                <PiMapPinAreaBold className="text-lg" />
+                <span>Coverage</span>
+              </NavLink>
+              <NavLink
+                to={`/about-us`}
+                className={
+                  "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
+                }
+              >
+                <FaInfoCircle className="text-lg" />
+                <span>About Us</span>
+              </NavLink>
+              <NavLink
+                to={`/be-a-rider`}
+                className={
+                  "px-5 py-3 rounded-xl flex items-center gap-3 transition-all duration-300"
+                }
+              >
+                <RiEBikeLine className="text-lg" />
+                <span>Be a Rider</span>
+              </NavLink>
             </div>
             <div className="absolute bottom-4 flex flex-col gap-1.5 sm:gap-2">
               {user ? (
