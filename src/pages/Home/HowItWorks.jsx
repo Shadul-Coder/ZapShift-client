@@ -4,6 +4,7 @@ import {
   FaHubspot,
   FaBuilding,
 } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const HowItWorks = () => {
   const features = [
@@ -39,23 +40,38 @@ const HowItWorks = () => {
   return (
     <section className="my-9 sm:my-11 md:my-13 lg:my-15">
       <div className="text-center mb-11 md:mb-15">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-3 md:mb-5">
+        <motion.h2
+          className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-3 md:mb-5"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           How it Works
-        </h2>
+        </motion.h2>
         <p className="md:text-lg text-gray-600 max-w-3xl mx-auto">
           Simple, reliable, and efficient delivery solutions for all your needs
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
-        {features.map((feature) => (
-          <div
+        {features.map((feature, index) => (
+          <motion.div
             key={feature.id}
-            className="bg-white rounded-2xl p-5 md:p-7 border border-gray-200"
+            className="bg-white rounded-2xl p-5 md:p-7 border border-gray-200 hover:border-secondary/30 transition-all duration-300"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: index * 0.15 }}
+            whileHover={{ y: -8 }}
           >
             <div className="mb-5 md:mb-6">
-              <div className="w-15 h-15 bg-secondary text-white rounded-2xl flex items-center justify-center text-2xl">
+              <motion.div
+                className="w-15 h-15 flex items-center justify-center text-5xl text-secondary"
+                whileHover={{ scale: 1.15 }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
                 {feature.icon}
-              </div>
+              </motion.div>
             </div>
             <h3 className="text-xl font-bold text-secondary mb-3">
               {feature.title}
@@ -63,7 +79,7 @@ const HowItWorks = () => {
             <p className="text-gray-600 leading-relaxed text-justify">
               {feature.description}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

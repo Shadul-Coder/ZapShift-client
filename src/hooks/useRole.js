@@ -14,6 +14,9 @@ const useRole = () => {
       setRoleLoading(false);
     };
     if (!loading) {
+      if (!user) {
+        return;
+      }
       fetchRole();
     }
   }, [secure, user, loading]);

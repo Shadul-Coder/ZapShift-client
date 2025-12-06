@@ -6,6 +6,7 @@ import {
   FaBuilding,
   FaExchangeAlt,
 } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const OurServices = () => {
   const services = [
@@ -55,25 +56,54 @@ const OurServices = () => {
   return (
     <section className="my-9 sm:my-11 md:my-13 lg:my-15 bg-secondary rounded-2xl p-5 sm:p-7 md:p-9 lg:p-11 xl:p-13">
       <div className="text-center mb-11 md:mb-15">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-5 text-white">
+        <motion.h2
+          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-5 text-white"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
           Our Services
-        </h2>
-        <p className="md:text-lg max-w-3xl mx-auto text-gray-200">
+        </motion.h2>
+        <motion.p
+          className="md:text-lg max-w-3xl mx-auto text-gray-200"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+        >
           Enjoy fast reliable parcel delivery with real-time tracking and
           zero-hassle. From personal packages to business shipments — we deliver
           on time, every time.
-        </p>
+        </motion.p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7">
-        {services.map((service) => (
-          <div
+        {services.map((service, index) => (
+          <motion.div
             key={service.id}
-            className="bg-white hover:bg-[#FDFEF9] transition-colors duration-200 rounded-2xl p-5 md:p-7"
+            className="bg-white hover:bg-[#FDFEF9] transition-all duration-300 rounded-2xl p-5 md:p-7"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.4,
+              delay: index * 0.1,
+              type: "spring",
+              stiffness: 200,
+            }}
+            whileHover={{
+              y: -5,
+              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
+            }}
           >
             <div className="mb-5 md:mb-6">
-              <div className="w-15 h-15 bg-gray-200 mx-auto text-secondary rounded-2xl flex items-center justify-center text-2xl">
+              <motion.div
+                className="w-15 h-15 bg-gray-200 mx-auto text-secondary rounded-2xl flex items-center justify-center text-2xl"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 {service.icon}
-              </div>
+              </motion.div>
             </div>
             <h3 className="text-xl font-bold text-secondary text-center mb-3">
               {service.title}
@@ -81,7 +111,7 @@ const OurServices = () => {
             <p className="text-gray-600 leading-relaxed text-center">
               {service.description}
             </p>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

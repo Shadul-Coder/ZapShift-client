@@ -1,3 +1,5 @@
+import { motion } from "motion/react";
+
 const FAQ = () => {
   const faqs = [
     {
@@ -39,7 +41,13 @@ const FAQ = () => {
   ];
   return (
     <section className="my-9 sm:my-11 md:my-13 lg:my-15">
-      <div className="text-center mb-11 md:mb-15">
+      <motion.div
+        className="text-center mb-11 md:mb-15"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary mb-3 md:mb-5">
           Frequently Asked Questions
         </h2>
@@ -48,29 +56,60 @@ const FAQ = () => {
           payments, and more. Experience hassle-free logistics with reliable
           parcel delivery solutions.
         </p>
-      </div>
-      <div className="max-w-4xl mx-auto">
+      </motion.div>
+      <motion.div
+        className="max-w-4xl mx-auto"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <div className="space-y-3 md:space-y-4">
           {faqs.map((faq, index) => (
-            <div
+            <motion.div
               key={faq.id}
-              className="collapse collapse-arrow bg-white border border-gray-200 rounded-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <input
-                type="radio"
-                name="faq-accordion"
-                defaultChecked={index === 0}
-              />
-              <div className="collapse-title font-semibold text-secondary text-lg">
-                {faq.question}
+              <div className="group">
+                <motion.div
+                  className="collapse collapse-arrow bg-white border border-gray-200 rounded-2xl group-hover:shadow-sm transition-all duration-300"
+                  whileHover={{ scale: 1.005 }}
+                >
+                  <input
+                    type="radio"
+                    name="faq-accordion"
+                    defaultChecked={index === 0}
+                  />
+                  <div className="collapse-title font-semibold text-secondary text-lg">
+                    <motion.div
+                      whileHover={{ x: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      {faq.question}
+                    </motion.div>
+                  </div>
+                  <motion.div
+                    className="collapse-content text-gray-600"
+                    initial={false}
+                  >
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="pt-2"
+                    >
+                      {faq.answer}
+                    </motion.p>
+                  </motion.div>
+                </motion.div>
               </div>
-              <div className="collapse-content text-gray-600">
-                <p className="pt-2">{faq.answer}</p>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

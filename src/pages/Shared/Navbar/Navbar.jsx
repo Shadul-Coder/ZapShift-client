@@ -9,9 +9,12 @@ import { FiSidebar } from "react-icons/fi";
 import logo from "../../../assets/logo.png";
 import { RiEBikeLine } from "react-icons/ri";
 import { GrHomeRounded } from "react-icons/gr";
+import useRole from "../../../hooks/useRole";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Navbar = () => {
   const { user, signOutuser, dashRef } = useAuth();
+  const { myRole, roleLoading } = useRole();
   const location = useLocation();
   const navlinks = [
     ["Home", "", <GrHomeRounded className="text-lg" />],
@@ -25,7 +28,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="bg-white mt-3 sm:mt-3.5 md:mt-4 lg:mt-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] flex justify-between items-center rounded-2xl p-3.5 sm:p-4 md:p-4.5 lg:p-5">
+      <nav className="bg-white border border-gray-200 mt-3 sm:mt-3.5 md:mt-4 lg:mt-4.5 max-w-7xl mx-auto w-[95%] lg:w-[97%] flex justify-between items-center rounded-2xl p-3.5 sm:p-4 md:p-4.5 lg:p-5">
         <div className="flex items-center gap-3">
           {location.pathname.includes("dashboard") && (
             <>
@@ -76,14 +79,35 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className="h-13 w-13 rounded-full border border-primary overflow-hidden cursor-pointer"
+                    className="flex items-center gap-3 cursor-pointer"
                   >
-                    <img
-                      src={user.photoURL}
-                      alt=""
-                      className="h-full w-full object-cover"
-                      crossOrigin="anonymous"
-                    />
+                    <div className="h-13 w-13 rounded-full border border-primary overflow-hidden">
+                      <img
+                        src={user.photoURL}
+                        alt=""
+                        className="h-full w-full object-cover"
+                        crossOrigin="anonymous"
+                      />
+                    </div>
+                    <div className="flex items-center gap-5">
+                      <div>
+                        <h5 className="font-medium">
+                          {user.displayName.split(" ")[0]}
+                        </h5>
+                        <h5 className="text-gray-500 text-[13px]">
+                          {roleLoading ? (
+                            "user"
+                          ) : (
+                            <>
+                              {myRole === "rider" && "Rider"}
+                              {myRole === "admin" && "Admin"}
+                              {myRole === "user" && "User"}
+                            </>
+                          )}
+                        </h5>
+                      </div>
+                      <IoIosArrowDown className="text-xl" />
+                    </div>
                   </div>
                   <div
                     tabIndex="-1"
@@ -154,6 +178,31 @@ const Navbar = () => {
           ></label>
           <div className="bg-base-200 menu min-h-full w-55 p-4 sm:w-75">
             <div className="flex flex-col gap-1.5 sm:gap-2 text-[#606060] font-medium">
+              {user && (
+                <div className="mb-5">
+                  <img
+                    src={user.photoURL}
+                    alt=""
+                    className="h-20 w-20 sm:h-23 sm:w-23 rounded-full mx-auto mb-3"
+                  />
+                  <div className="text-center">
+                    <h5 className="text-lg text-secondary font-semibold">
+                      {user.displayName}
+                    </h5>
+                    <h5 className="text-gray-500 text-[13px]">
+                      {roleLoading ? (
+                        "user"
+                      ) : (
+                        <>
+                          {myRole === "rider" && "Rider"}
+                          {myRole === "admin" && "Admin"}
+                          {myRole === "user" && "User"}
+                        </>
+                      )}
+                    </h5>
+                  </div>
+                </div>
+              )}
               <NavLink
                 to={`/`}
                 className={

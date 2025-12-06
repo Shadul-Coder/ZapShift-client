@@ -6,7 +6,7 @@ const Error = () => {
   return (
     <>
       <title>Error 404 | ZapShift</title>
-      <header>
+      <header className="sticky top-3 sm:top-3.5 md:top-4 lg:top-4.5 z-70">
         <Navbar />
       </header>
       <main>
