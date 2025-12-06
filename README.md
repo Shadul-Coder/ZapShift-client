@@ -7,13 +7,22 @@ ZapShift is a full-featured parcel delivery web application built with the MERN 
 - **Client:** [https://shadul-zapshift.netlify.app/](https://shadul-zapshift.netlify.app/)
 - **Server:** [https://shadul-zap-shift-server.vercel.app/](https://shadul-zap-shift-server.vercel.app/)
 
-### 🔐 Admin Demo Access
-For testing admin features, use these credentials:
+### 🔐 Demo Access Credentials
 
-**Admin Email:** shadulislam@gmail.com  
-**Admin Password:** Asdfg0
+#### **Admin Panel**
+**Email:** shadulislam@gmail.com  
+**Password:** Asdfg0
 
-*Note: This is a demo account. Please use responsibly and do not modify sensitive system settings.*
+#### **Payment Testing (Stripe)**
+For testing payments, use these test card details:
+
+| Card Type | Card Number | Expiry Date | CVC |
+|-----------|-------------|-------------|-----|
+| **Visa** | `4242 4242 4242 4242` | Any future date | Any 3 digits |
+
+**Test Mode Only:** All payments in this demo use Stripe's test environment. No real money will be charged.
+
+*Note: These are demo accounts. Please use responsibly and do not modify sensitive system settings.*
 
 ## 🎯 Features
 
